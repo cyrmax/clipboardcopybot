@@ -4,10 +4,13 @@ from telebot import types
 from time import time
 import clipboard
 import winsound
+import configparser
 
 startTime = time()
+config = configparser.ConfigParser()
+config.read("config.ini")
 
-bot = telebot.TeleBot("")
+bot = telebot.TeleBot(config.get("bot", "token"))
 
 @bot.message_handler(content_types=["text"])
 def getTextMessage(message):
